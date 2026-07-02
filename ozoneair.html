@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ozoneair Case Study: How Hannes Media engineered a 0% to 66% market share takeover, generating 264M+ kr in revenue with a sustained 8.46x ROAS system.">
+    <title>Ozoneair Case Study — Hannes Media</title>
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Study Specific Volt Accents */
+        :root {
+            --accent-volt: #CCFF00;
+            --accent-volt-hover: #b2de00;
+            --accent-volt-rgb: 204, 255, 0;
+            --border-volt: rgba(204, 255, 0, 0.15);
+        }
+        
+        .volt-highlight {
+            color: var(--accent-volt);
+        }
+        
+        .btn-volt {
+            background-color: var(--accent-volt);
+            color: #111110;
+            font-weight: 700;
+        }
+        
+        .btn-volt:hover {
+            background-color: var(--accent-volt-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(var(--accent-volt-rgb), 0.2);
+        }
+
+        .btn-outline-volt {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-volt);
+        }
+
+        .btn-outline-volt:hover {
+            background-color: rgba(204, 255, 0, 0.05);
+            border-color: var(--accent-volt);
+            transform: translateY(-2px);
+        }
+
+        .case-hero-glow {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(var(--accent-volt-rgb), 0.08) 0%, rgba(17,17,16,0) 70%);
+            filter: blur(50px);
+            pointer-events: none;
+        }
+        
+        /* Outline loops styling mimicking hand-drawn outlines */
+        .outline-draw {
+            position: relative;
+            display: inline-block;
+        }
+        .outline-draw::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: -4px;
+            width: calc(100% + 8px);
+            height: 12px;
+            border: 2px solid var(--accent-volt);
+            border-top: none;
+            border-radius: 50%;
+            transform: rotate(-1.5deg);
+            opacity: 0.8;
+        }
+
+        /* Conditions matrix */
+        .conditions-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .cond-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: var(--radius-md);
+        }
+        
+        .cond-item.is-failed {
+            border-left: 4px solid #ff3b30;
+        }
+
+        .cond-item.is-success {
+            border-left: 4px solid var(--accent-volt);
+        }
+
+        .cond-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .cond-item.is-failed svg {
+            color: #ff3b30;
+        }
+
+        .cond-item.is-success svg {
+            color: var(--accent-volt);
+        }
+
+        /* Before After Comparison */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .ba-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .ba-card.before {
+            border-top: 4px solid #ff3b30;
+        }
+
+        .ba-card.after {
+            border-top: 4px solid var(--accent-volt);
+            box-shadow: 0 10px 30px rgba(var(--accent-volt-rgb), 0.05);
+        }
+
+        .ba-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .ba-value {
+            font-family: var(--font-display);
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .before .ba-value {
+            color: #ff3b30;
+        }
+
+        .after .ba-value {
+            color: var(--accent-volt);
+        }
+
+        .ba-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Turnaround Timeline Chart */
+        .chart-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .chart-bars {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 250px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            gap: 12px;
+        }
+
+        .chart-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .chart-bar-value {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .chart-bar {
+            width: 100%;
+            max-width: 60px;
+            background-color: var(--bg-tertiary);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease-out;
+        }
+
+        .chart-bar.highlighted {
+            background-color: var(--accent-volt);
+            box-shadow: 0 0 15px rgba(var(--accent-volt-rgb), 0.2);
+        }
+
+        .chart-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .chart-sublabel {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Comparison Row */
+        .comparison-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            margin-top: 40px;
+        }
+
+        .comp-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            border-left: 1px solid var(--border-color);
+            padding-left: 40px;
+        }
+
+        .comp-metric {
+            text-align: center;
+        }
+
+        .comp-metric .num {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .comp-metric.failed .num {
+            color: var(--text-muted);
+        }
+
+        .comp-metric.success .num {
+            color: var(--accent-volt);
+        }
+
+        .comp-metric .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* Two columns product launch grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-volt);
+            margin-bottom: 24px;
+        }
+
+        .product-card .value {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .product-card .sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .metric-list-vertical {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+        }
+
+        .metric-list-vertical li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .metric-list-vertical li .label {
+            color: var(--text-secondary);
+        }
+
+        .metric-list-vertical li .val {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .ba-grid, .comparison-block, .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .comp-visual {
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding-left: 0;
+                padding-top: 40px;
+                margin-top: 20px;
+            }
+            .chart-bars {
+                height: 180px;
+                gap: 6px;
+            }
+            .chart-bar-value {
+                font-size: 10px;
+            }
+            .chart-label {
+                font-size: 9px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header class="site-header scrolled" id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="brand-logo" id="header-logo">
+                <span class="logo-dot"></span>Hannes Media
+            </a>
+            <nav class="nav-links" id="main-nav">
+                <a href="index.html#record">The Record</a>
+                <a href="index.html#operations">Operations</a>
+                <a href="index.html#framework">Methodology</a>
+                <a href="index.html#about">The Founder</a>
+                <a href="index.html#offer">The Partnership</a>
+            </nav>
+            <div class="header-action">
+                <a href="#contact" class="btn btn-volt btn-sm" id="header-cta-btn">Book Call</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="case-hero-glow"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge-container">
+                        <span class="badge-pulse" style="background-color: var(--accent-volt);"></span>
+                        <span class="hero-badge">IAQ Case Study · Sweden</span>
+                    </div>
+                    <h1 class="hero-title" style="font-size: 56px; max-width: 900px; margin: 0 auto 24px auto;">
+                        0.84 ROAS to <span class="volt-highlight outline-draw">66% Market</span> Dominance
+                    </h1>
+                    <p class="hero-subtitle" style="font-size: 20px; max-width: 700px;">
+                        How we scaled Sweden's biggest air purifier brand from sub-1% market presence using a psychology-driven Meta advertising system.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#challenge" class="btn btn-volt" id="hero-btn-details">Read Case Study</a>
+                        <a href="index.html" class="btn btn-outline-volt" id="hero-btn-home">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Metrics Grid -->
+        <section class="record-section" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
+            <div class="container">
+                <div class="metrics-grid">
+                    <div class="metric-card" style="border-bottom: 2px solid var(--accent-volt);">
+                        <span class="metric-value" style="color: var(--accent-volt);">$25M+</span>
+                        <span class="metric-label">Total sales scaled</span>
+                    </div>
+                    <div class="metric-card" style="border-bottom: 2px solid var(--accent-volt);">
+                        <span class="metric-value" style="color: var(--accent-volt);">66%</span>
+                        <span class="metric-label">National Market Share</span>
+                    </div>
+                    <div class="metric-card" style="border-bottom: 2px solid var(--accent-volt);">
+                        <span class="metric-value" style="color: var(--accent-volt);">8.46x</span>
+                        <span class="metric-label">Sustained ROAS (42 mo)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Challenge Section -->
+        <section class="about-section" id="challenge" style="padding-top: 60px;">
+            <div class="container about-container" style="align-items: flex-start;">
+                <div class="about-content">
+                    <span class="section-tag" style="color: var(--accent-volt);">The Challenge</span>
+                    <h2>Competing in a mature IAQ market against global giants.</h2>
+                    <p class="lead-text">Ozoneair entered a category already owned by global incumbents (Dyson, Philips, Electrolux) with decades of brand equity and multi-million dollar marketing budgets.</p>
+                    <p>The product was revolutionary, but the acquisition system was broken. A previous agency had failed. Customer Acquisition Cost (CAC) had ballooned to unsustainable heights. The brand was spending to lose, with an ad return (ROAS) of 0.84.</p>
+                    <p>The problem wasn't the market or the product. It was the absence of a structured acquisition system built specifically for high-AOV (Average Order Value) hardware.</p>
+                </div>
+                <div>
+                    <span class="section-tag" style="color: var(--accent-volt);">Starting Conditions</span>
+                    <ul class="conditions-list">
+                        <li class="cond-item is-failed">
+                            <i data-lucide="x-circle"></i>
+                            <div>
+                                <h3>Less than 1% market share</h3>
+                                <p>Invisible on the radar, completely unknown to consumers.</p>
+                            </div>
+                        </li>
+                        <li class="cond-item is-failed">
+                            <i data-lucide="x-circle"></i>
+                            <div>
+                                <h3>ROAS as low as 0.84</h3>
+                                <p>Losing money on ad spend with no conversion path.</p>
+                            </div>
+                        </li>
+                        <li class="cond-item is-failed">
+                            <i data-lucide="x-circle"></i>
+                            <div>
+                                <h3>CAC at 6,582 kr ($630+)</h3>
+                                <p>Completely unsustainable unit economics that blocked growth.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before After Comparison Block -->
+        <section class="framework-section" style="padding: 80px 0;">
+            <div class="container">
+                <span class="section-tag" style="color: var(--accent-volt); display: block; text-align: center;">The Turnaround</span>
+                <h2 style="text-align: center; font-size: 32px; margin-bottom: 16px;">The Before vs After</h2>
+                <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px auto; font-size: 15px;">
+                    How Hannes Media optimized the unit economics, turning Meta from a cash drain into an automated scale engine.
+                </p>
+
+                <div class="ba-grid">
+                    <div class="ba-card before">
+                        <span class="ba-label">Before Hannes Media</span>
+                        <div class="ba-value">0.84x</div>
+                        <p class="ba-sub">ROAS Peak (May 2022)</p>
+                        <div style="height: 1px; background-color: var(--border-color); margin: 20px 0;"></div>
+                        <div class="ba-value" style="font-size: 36px;">6,582 kr</div>
+                        <p class="ba-sub">Cost Per Acquisition (CPA)</p>
+                    </div>
+
+                    <div class="ba-card after">
+                        <span class="ba-label" style="color: var(--accent-volt);">After Hannes Media</span>
+                        <div class="ba-value">7.25x</div>
+                        <p class="ba-sub">ROAS achieved (November 2022)</p>
+                        <div style="height: 1px; background-color: var(--border-color); margin: 20px 0;"></div>
+                        <div class="ba-value" style="font-size: 36px;">759 kr</div>
+                        <p class="ba-sub">Cost Per Acquisition (88% reduction)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Strategy Pillars -->
+        <section class="framework-section" style="background-color: var(--bg-primary); border-top: none;">
+            <div class="container">
+                <span class="section-tag" style="color: var(--accent-volt); display: block; text-align: center;">The Strategy</span>
+                <h2 style="text-align: center; font-size: 32px; margin-bottom: 16px;">The System Others Failed to Build</h2>
+                <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 60px auto; font-size: 15px;">
+                    We threw out the traditional e-commerce agency playbook and engineered an acquisition infrastructure around 4 strategic pillars.
+                </p>
+
+                <div class="framework-grid">
+                    <div class="framework-card">
+                        <div class="frame-icon-wrapper" style="color: var(--accent-volt);"><i data-lucide="compass"></i></div>
+                        <h3>01 / IAQ Positioning</h3>
+                        <p>Repositioned Ozoneair as the absolute authority on indoor air quality, not just another appliance on a shelf. Messaging focused on protection, allergy relief, mold prevention, and seasonal air purity.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="frame-icon-wrapper" style="color: var(--accent-volt);"><i data-lucide="cpu"></i></div>
+                        <h3>02 / The Meta Ads Machine</h3>
+                        <p>Transformed the ad account into a profit machine. Built isolated testing sandboxes, scaled with broad audiences, and produced over 5,000+ unique ad variants to match Meta's dynamic auction.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="frame-icon-wrapper" style="color: var(--accent-volt);"><i data-lucide="eye"></i></div>
+                        <h3>03 / Fear-Driven Psychology</h3>
+                        <p>Air is invisible. Threat is invisible. Therefore, ad hooks had to visualize the invisible threat—allergic children, silent mold forming behind drywall, and smoke creep. We sold clean air emotionally first.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="frame-icon-wrapper" style="color: var(--accent-volt);"><i data-lucide="trending-up"></i></div>
+                        <h3>04 / Precision Scaling</h3>
+                        <p>Deployed advanced custom audiences built from high-value purchasers. Scaled spend aggressively only after margin and contribution thresholds were proven. Profit first, volume second.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline / Turnaround Section -->
+        <section class="about-section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 60px;">
+                    <span class="section-tag" style="color: var(--accent-volt);">The Velocity</span>
+                    <h2>First 5 Months: The Turnaround</h2>
+                    <p class="lead-text" style="font-size: 16px; color: var(--text-secondary); margin-top: 12px;">From July to November, we took over and rebuilt the acquisition loop. The sales numbers followed immediately—growing 17x in less than half a year.</p>
+                </div>
+
+                <!-- Interactive CSS Bar Chart -->
+                <div class="chart-container">
+                    <div class="chart-bars">
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value">23</span>
+                            <div class="chart-bar" style="height: 10%;"></div>
+                            <span class="chart-label">Jun (M0)</span>
+                            <span class="chart-sublabel">1.47x ROAS</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value">54</span>
+                            <div class="chart-bar" style="height: 15%;"></div>
+                            <span class="chart-label">Jul (M1)</span>
+                            <span class="chart-sublabel">4.95x ROAS</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value">307</span>
+                            <div class="chart-bar" style="height: 40%;"></div>
+                            <span class="chart-label">Aug (M2)</span>
+                            <span class="chart-sublabel">4.34x ROAS</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value">496</span>
+                            <div class="chart-bar" style="height: 60%;"></div>
+                            <span class="chart-label">Sep (M3)</span>
+                            <span class="chart-sublabel">4.40x ROAS</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value">529</span>
+                            <div class="chart-bar" style="height: 65%;"></div>
+                            <span class="chart-label">Oct (M4)</span>
+                            <span class="chart-sublabel">4.07x ROAS</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <span class="chart-bar-value" style="color: var(--accent-volt);">936</span>
+                            <div class="chart-bar highlighted" style="height: 100%;"></div>
+                            <span class="chart-label" style="color: var(--text-primary);">Nov (M5)</span>
+                            <span class="chart-sublabel" style="color: var(--accent-volt);">7.25x ROAS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why This Worked Insights -->
+        <section class="framework-section" style="background-color: var(--bg-secondary); border-bottom: none;">
+            <div class="container">
+                <span class="section-tag" style="color: var(--accent-volt); display: block; text-align: center;">Key Learnings</span>
+                <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Why this worked when others failed.</h2>
+                
+                <div class="framework-grid">
+                    <div class="framework-card">
+                        <h3>Insight 01</h3>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">AQ cannot be scaled with standard playbooks.</p>
+                        <p>High-AOV hardware has a longer consideration window and different psychological buying triggers. Applying standard $40 DTC e-commerce hacks to a premium $500 product fails predictably.</p>
+                    </div>
+                    <div class="framework-card">
+                        <h3>Insight 02</h3>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Creative velocity must match seasonal triggers.</p>
+                        <p>Allergy seasons, humidity peaks, and winter containment dictate buyer intent. Your creative testing engine must pre-empt these seasonal cycles to capture demand when it spikes.</p>
+                    </div>
+                    <div class="framework-card">
+                        <h3>Insight 03</h3>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Meta must be a margin engine, not traffic.</p>
+                        <p>Most agencies optimize for clicks or ROAS. We optimize for contribution margin—understanding the exact math where increasing ad spend compounds into bottom-line profits.</p>
+                    </div>
+                    <div class="framework-card">
+                        <h3>Insight 04</h3>
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Discipline gates scaling.</p>
+                        <p>We scaled spend only when the Customer Acquisition Cost (CAC) proved stable at high volumes. Disciplined scaling was what kept the account highly profitable for 43 consecutive months.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Viral vs Systems Block -->
+        <section class="about-section">
+            <div class="container">
+                <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center;">
+                    <span class="section-tag" style="color: var(--accent-volt);">The Brand Playbook</span>
+                    <h2 style="max-width: 700px; margin-bottom: 16px;">The Viral Campaign that Broke the Market</h2>
+                    <p class="lead-text" style="max-width: 600px; font-size: 15px; color: var(--text-secondary);">We partnered with one of Sweden's most famous celebrities (Pernilla Wahlgren) to run a tongue-in-cheek 1980s TV-shop style ad campaign. It went viral, landing in national newspapers and creating massive public buzz.</p>
+                </div>
+
+                <div class="comparison-block">
+                    <div>
+                        <h3>Systems Beat Viral Every Time</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 12px; line-height: 1.6;">The celebrity campaign built incredible nationwide brand awareness and drove a massive $1.7M Black Friday week with a 10.93x ROAS. But the real lesson lies in the numbers.</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 12px; line-height: 1.6;">Our structured, always-on Meta acquisition system delivered a <strong>3x higher raw conversion rate</strong> than the viral celebrity moment. Brand moments create awareness; systems convert it into recurring revenue.</p>
+                    </div>
+                    <div class="comp-visual">
+                        <div class="comp-metric failed">
+                            <span class="num">1x</span>
+                            <span class="label">Celebrity Campaign CR</span>
+                        </div>
+                        <div class="comp-metric success">
+                            <span class="num" style="color: var(--accent-volt);">3x</span>
+                            <span class="label" style="color: var(--text-primary);">Structured Meta CR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scaling New Products too -->
+        <section class="framework-section" style="background-color: var(--bg-secondary);">
+            <div class="container">
+                <span class="section-tag" style="color: var(--accent-volt); display: block; text-align: center;">Operational Leverage</span>
+                <h2 style="text-align: center; font-size: 32px; margin-bottom: 16px;">The System Scaled to New Products Too</h2>
+                <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px auto; font-size: 15px;">
+                    Once the acquisition architecture was built, launching new products became a repeatable playbook.
+                </p>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div>
+                            <h3>Ozoneair Wash</h3>
+                            <p class="sub">Fabric freshening device launch</p>
+                            <div class="value" style="margin-top: 24px;">$470K</div>
+                            <p class="sub">Sales in first 2 months</p>
+                        </div>
+                        <ul class="metric-list-vertical" style="margin-top: 24px; padding-top: 20px;">
+                            <li><span class="label">Launch ROAS</span><span class="val" style="color: var(--accent-volt);">7.4x</span></li>
+                            <li><span class="label">Inventory</span><span class="val">Sold out multiple times</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="product-card">
+                        <div>
+                            <h3>Ozoneair Clean</h3>
+                            <p class="sub">Premium odor elimination device launch</p>
+                            <div class="value" style="margin-top: 24px;">$3.8M</div>
+                            <p class="sub">Total launch campaign sales</p>
+                        </div>
+                        <ul class="metric-list-vertical" style="margin-top: 24px; padding-top: 20px;">
+                            <li><span class="label">Launch ROAS</span><span class="val" style="color: var(--accent-volt);">9.85x</span></li>
+                            <li><span class="label">Units Sold</span><span class="val">6,100 units</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Most IAQ Brands Get Wrong Checklist -->
+        <section class="about-section">
+            <div class="container about-container" style="align-items: flex-start;">
+                <div class="about-content">
+                    <span class="section-tag" style="color: var(--accent-volt);">Audit Matrix</span>
+                    <h2>What most IAQ brands get wrong.</h2>
+                    <p class="lead-text">This isn't theory. This is what we see in almost every Indoor Air Quality brand we audit. The category has a consistent failure pattern that caps their growth.</p>
+                    <p>Understanding this is why the Ozoneair system worked, and why this exact acquisition infrastructure translates directly to other premium DTC consumer brands.</p>
+                </div>
+                <div>
+                    <ul class="conditions-list">
+                        <li class="cond-item is-success">
+                            <i data-lucide="check-circle"></i>
+                            <div>
+                                <h3>01 / Technical Specs Over-indexing</h3>
+                                <p>IAQ buyers do not purchase on CADR ratings or filter technical specs. They purchase on fear (allergies, mold, child safety) and desire. Spec-driven creative underperforms emotional creative every time.</p>
+                            </div>
+                        </li>
+                        <li class="cond-item is-success">
+                            <i data-lucide="check-circle"></i>
+                            <div>
+                                <h3>02 / Ignoring Seasonality in Ad Structure</h3>
+                                <p>Demand is inherently seasonal (allergy season, humidity spikes). Brands that don't adjust their creative angles, budgets, and funnel structures to match these waves suffer extreme CAC volatility.</p>
+                            </div>
+                        </li>
+                        <li class="cond-item is-success">
+                            <i data-lucide="check-circle"></i>
+                            <div>
+                                <h3>03 / No Structured Testing Matrix</h3>
+                                <p>Most brands run the same 3-5 ads for months. With no structured testing roadmap or creative rotation, ad fatigue sets in quickly and acquisition costs climb.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom CTA Form -->
+        <section class="contact-section" id="contact" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+            <div class="container contact-container">
+                <div class="contact-form-wrapper" style="border: 2px solid var(--accent-volt); box-shadow: 0 15px 30px rgba(var(--accent-volt-rgb), 0.05);">
+                    <span class="section-tag" style="color: var(--accent-volt);">Acquisition Gate</span>
+                    <h2>Scale Your IAQ Brand</h2>
+                    <p>The acquisition system that took Ozoneair from 0.84 ROAS to 66% market share is available for 5 brands this quarter. If you are spending $20K+/month and looking for structured scale, apply for an audit below.</p>
+                    
+                    <form class="contact-form" id="acquisition-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-name">Name</label>
+                                <input type="text" id="form-name" required placeholder="Hannes Jacobsson">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Work Email</label>
+                                <input type="email" id="form-email" required placeholder="hannes@hannesmedia.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-company">Company / Brand Name</label>
+                                <input type="text" id="form-company" required placeholder="Ozoneair">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-spend">Monthly Ad Spend (USD)</label>
+                                <select id="form-spend" required>
+                                    <option value="" disabled selected>Select range</option>
+                                    <option value="under-20k">Under $20,000</option>
+                                    <option value="20k-50k">$20,000 - $50,000</option>
+                                    <option value="50k-150k">$50,000 - $150,000</option>
+                                    <option value="150k-plus">$150,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-text">What is your primary bottleneck to scaling your Meta Ads?</label>
+                            <textarea id="form-text" rows="4" required placeholder="Describe your current performance, creative production bottleneck, or funnel conversion issues..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-volt btn-block" id="form-submit-btn">Apply for Strategic Audit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="logo-dot" style="background-color: var(--accent-volt);"></span>Hannes Media
+                <p>Timestill OÜ · Tallinn, Estonia</p>
+            </div>
+            <div class="footer-meta">
+                <p>&copy; 2026 Hannes Media. All rights reserved. Strategic acquisition partners.</p>
+                <div class="footer-links">
+                    <a href="index.html">Main Site</a>
+                    <a href="index.html#operations">Operations</a>
+                    <a href="index.html#framework">IP Framework</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Contact Form Interactive validation & submission
+            const form = document.getElementById('acquisition-form');
+            const submitBtn = document.getElementById('form-submit-btn');
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('form-name').value;
+                    const company = document.getElementById('form-company').value;
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = "Analyzing Brand Details...";
+
+                    setTimeout(() => {
+                        const formWrapper = form.parentElement;
+                        formWrapper.style.opacity = '0';
+                        setTimeout(() => {
+                            formWrapper.innerHTML = `
+                                <div class="success-panel" style="text-align: center; padding: 40px 0; animation: fadeIn 0.6s forwards;">
+                                    <div class="success-icon-wrapper" style="width: 80px; height: 80px; background-color: rgba(204, 255, 0, 0.1); border: 2px solid var(--accent-volt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-volt); margin: 0 auto 30px auto;">
+                                        <i data-lucide="check-circle" style="width: 40px; height: 40px;"></i>
+                                    </div>
+                                    <h2 style="font-size: 28px; margin-bottom: 12px; color: var(--text-primary);">Audit Request Received</h2>
+                                    <p style="font-size: 15px; color: var(--text-secondary); max-width: 500px; margin: 0 auto 30px auto; line-height: 1.6;">
+                                        Thank you, <strong>${name}</strong>. We have registered <strong>${company}</strong> for an IAQ Scale Audit.
+                                    </p>
+                                    <div style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius-md); max-width: 480px; margin: 0 auto; text-align: left; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                                        <h4 style="color: var(--text-primary); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                                            <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--accent-volt);"></i> Next Step:
+                                        </h4>
+                                        Hannes Jacobsson will personally review your brand's current Meta creative layout and coordinate with you via email within 24 hours to schedule your strategy audit call.
+                                    </div>
+                                </div>
+                            `;
+                            formWrapper.style.opacity = '1';
+                            if (typeof lucide !== 'undefined') {
+                                lucide.createIcons();
+                            }
+                        }, 300);
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
