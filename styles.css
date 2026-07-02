@@ -6,8 +6,8 @@
     --bg-secondary: #1a1a19;
     --bg-tertiary: #222220;
     --text-primary: #f5f5f7;
-    --text-secondary: #8e8e93;
-    --text-muted: #636366;
+    --text-secondary: #d1d1d6;
+    --text-muted: #a1a1a6;
     --accent: #F66D0A;
     --accent-hover: #e05c00;
     --accent-rgb: 246, 109, 10;
@@ -425,10 +425,10 @@ a {
 }
 
 .section-desc-text {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
-    max-width: 320px;
-    line-height: 1.5;
+    max-width: 340px;
+    line-height: 1.6;
 }
 
 .operations-grid {
@@ -523,7 +523,7 @@ a {
 }
 
 .card-summary {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
     margin-bottom: 24px;
     line-height: 1.6;
@@ -571,9 +571,9 @@ a {
 .section-subtitle-text {
     text-align: center;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto 60px auto;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .framework-grid {
@@ -633,9 +633,9 @@ a {
 }
 
 .framework-card p {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* About / Team Section */
@@ -728,7 +728,7 @@ a {
 }
 
 .about-content p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
     margin-bottom: 30px;
     line-height: 1.6;
@@ -784,7 +784,7 @@ a {
 }
 
 .offer-card-details p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
     margin-bottom: 32px;
     line-height: 1.6;
@@ -801,7 +801,7 @@ a {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -967,8 +967,8 @@ a {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 13px;
-    line-height: 1.4;
+    font-size: 15px;
+    line-height: 1.5;
     color: var(--text-secondary);
 }
 
@@ -1012,10 +1012,10 @@ a {
 }
 
 .contact-form-wrapper p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
     margin-bottom: 40px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .contact-form {
